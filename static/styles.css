@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: 'Nunito', sans-serif;
+}
+
+input, textarea, button {
+    font-family: 'Nunito', sans-serif;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+    appearance: none;
+}
+
+.caja-formulario {
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.caja-formulario form {
+    position: relative;
+    width: 40%;
+    border: none;
+    background-color: #ffffff;
+    box-shadow: 1px 1px 5px 2px #e1e1e1;
+    border-radius: 5px;
+    padding: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+form .caja-input {
+    position: relative;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+}
+
+form .caja-input input,
+form .caja-input textarea {
+    border: none;
+    outline: none;
+    padding: 8px 10px;
+    width: 100%;
+    background: none;
+}
+
+form .caja-input textarea {
+    border-radius: 5px;
+    resize: none;
+    height: 150px;
+    border: 2px solid transparent;
+    border-bottom: 2px solid #010101;
+    transition: .3s linear;
+}
+form .caja-input textarea:focus {
+    border-color: #010101;
+}
+
+form .caja-input label {
+    position: absolute;
+    width: 100%;
+    padding: 8px 10px;
+    pointer-events: none;
+    transition: .5s;
+}
+
+
+form .caja-input i {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    border-radius: 5px;
+    background-color: #010101;
+    transition: .5s;
+}
+
+form .caja-input input:valid ~ label,
+form .caja-input input:focus ~ label {
+    font-size: .8em;
+    transform: translateY(-15px) translateX(-8px);
+}
+
+form > input {
+    border: none;
+    outline: none;
+    background-color: #0386f1;
+    color: #fff;
+    font-size: 1.2em;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    width: 85%;
+    height: 1200px;
+    margin: 0 auto; 
+    gap: 30px;
+    flex-wrap: wrap;
+    padding: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+}
+
+.caja {
+    position: relative;
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: bold;
+    width: 30%;
+    height: 360px;
+    box-shadow: 2px 2px 10px #010101;
+    background-color: #f25656;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.caja > div {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    gap: 5px;
+    flex-direction: column;
+    background-color: #f432323f;
+    padding: 4px;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.caja .content {
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    align-items: start;
+    flex-direction: column;
+    height: 0px;
+    transition: .3s linear;
+}
+
+
+.content.active {
+    height: 140px;
+}
+
+
+.content::-webkit-scrollbar {
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px #f96868c8;
+}
+.content::-webkit-scrollbar-thumb {
+    background: #f21414;
+    border-radius: 10px;
+}
+
+.caja h2 {
+    text-align: center;
+    width: 100%;
+}
+
+.caja .img-box {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #ffffff, #ffffff);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-box img {
+    width: 70px;
+    mix-blend-mode: multiply;
+}
+
+.btns-caja {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 32%;
+    height: 30px;
+    outline: none;
+    border: none;
+    padding: 10px;
+    color: #fff;
+    background-color: #0386f1;
+    transition: .3s linear;
+    font-size: .8em;
+    
+}
+
+.btn-card:nth-child(2) {
+    color: #fff;
+    background-color: #097105;
+}
+
+
+.btn-card:nth-child(3) {
+    color: #fff;
+    background-color: #cc0909;
+}
+
+
+.link-compra {
+    text-decoration: none;
+    color: #010101;
+    transition: .2s linear;
+}
+
+.link-compra:hover {
+    color: #17dc10;
+}
