@@ -1,11 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-size: 16px;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
+
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  background: #e6ece9;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 
 input, textarea, button {
     font-family: 'Nunito', sans-serif;
@@ -106,7 +144,6 @@ form > input {
     justify-content: center;
     align-items: start;
     width: 85%;
-    height: 1200px;
     margin: 0 auto; 
     gap: 30px;
     flex-wrap: wrap;
@@ -121,23 +158,30 @@ form > input {
     border-radius: 10px;
     padding: 10px;
     font-weight: bold;
-    width: 30%;
+    width: 100%;
     height: 360px;
     box-shadow: 2px 2px 10px #010101;
-    background-color: #f25656;
+    background-color: #eeeeee;
     overflow-x: hidden;
     overflow-y: auto;
+
+    background: rgba( 248, 246, 248, 0.8 );
+    box-shadow: 0 8px 32px 0 rgba(164, 163, 163, 0.37);
+    backdrop-filter: blur( 10.5px );
+    -webkit-backdrop-filter: blur( 10.5px );
+    border-radius: 20px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 .caja > div {
     display: flex;
     justify-content: center;
     align-items: start;
-    gap: 5px;
+    gap: 10px;
     flex-direction: column;
-    background-color: #f432323f;
-    padding: 4px;
-    border-radius: 10px;
+    background-color: transparent;
+    padding: 1px;
+    border-radius: 20px;
     width: 100%;
     height: 100%;
 }
@@ -160,31 +204,32 @@ form > input {
 
 .content::-webkit-scrollbar {
     border-radius: 10px;
-    box-shadow: inset 0px 0px 5px #f96868c8;
+    box-shadow: inset 0px 0px 5px #212121c8;
 }
 .content::-webkit-scrollbar-thumb {
-    background: #f21414;
-    border-radius: 10px;
+    background: #bcbcbc;
+    border-radius: 20px;
 }
 
 .caja h2 {
     text-align: center;
     width: 100%;
+    font-size: 1.2em;
 }
 
 .caja .img-box {
-    width: 100px;
-    height: 100px;
+    width: 130px;
+    height: 130px;
     margin: 0 auto;
     background: linear-gradient(180deg, #ffffff, #ffffff);
-    border-radius: 50%;
+    border: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .img-box img {
-    width: 70px;
+    width: 100%;
     mix-blend-mode: multiply;
 }
 
@@ -193,6 +238,7 @@ form > input {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
 }
 
 .btn-card {
@@ -200,7 +246,7 @@ form > input {
     justify-content: center;
     align-items: center;
     gap: 10px;
-    width: 32%;
+    width: 100%;
     height: 30px;
     outline: none;
     border: none;
@@ -211,10 +257,26 @@ form > input {
     font-size: .8em;
     
 }
+.btn-card:nth-child(1){
+    background: rgba( 3, 134, 241, 0.85 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 20px );
+    -webkit-backdrop-filter: blur( 20px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
 
 .btn-card:nth-child(2) {
     color: #fff;
-    background-color: #097105;
+    /*background-color: #097105;*/
+
+    background: rgba( 47, 207, 39, 0.85 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 20px );
+    -webkit-backdrop-filter: blur( 20px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 
@@ -233,3 +295,9 @@ form > input {
 .link-compra:hover {
     color: #17dc10;
 }
+
+
+
+
+
+

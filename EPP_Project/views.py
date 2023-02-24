@@ -1,13 +1,10 @@
 from django.shortcuts import render, HttpResponse, redirect
+from EPP.models import Productos
 
 
 def index(request):
-    nombre = 'roberto'
-
-    context ={
-        'nombre': nombre
-    }
-    return render(request, 'index.html', context)
+    queryset = Productos.objects.all()
+    return render(request, 'index.html', {'queryset':queryset})
 
 def pedidos(request):
     pedido = 'pedido1'

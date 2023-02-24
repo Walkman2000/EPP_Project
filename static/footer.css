@@ -17,6 +17,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 2em;
 }
 .contact-info .phone,
 .contact-info .email,
@@ -24,7 +25,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: .6em;
+    gap: .5em;
 }
 
 .fas {
@@ -37,7 +38,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10%;
+    gap: 5%;
 }
 
 .icons a {
@@ -46,6 +47,7 @@
 
 .icons a .fab {
     color: #fff;
+    font-size: 2rem;
 }
 
 .fa-facebook,
@@ -64,4 +66,8 @@
 }
 .fa-whatsapp:hover {
     background-color: #25d366;
+}
+span{
+    color: white;
+
 }
