@@ -1,0 +1,62 @@
+.contact-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg_blue);
+    color:#fff;
+}
+
+.contact-content .contact-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contact-info .phone,
+.contact-info .email,
+.contact-info .location {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .6em;
+}
+
+.fas {
+    color: #e2e1e9;
+}
+
+.icons {
+    width: 100%;
+    margin-bottom: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+}
+
+.icons a {
+    font-size: 3rem;
+}
+
+.icons a .fab {
+    color: #fff;
+}
+
+.fa-facebook,
+.fa-instagram, 
+.fa-whatsapp {
+    width: 100%;
+    display: inline-block;
+    border-radius: 50%;
+    padding: .2em;
+    background-color: var(--bg_dark);
+    transition: all .3s linear;
+}
+
+.fa-facebook:hover {
+    background-color: #3b5998;
+}
+.fa-whatsapp:hover {
+    background-color: #25d366;
+}
