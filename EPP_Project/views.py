@@ -13,3 +13,7 @@ def pedidos(request):
         'pedido' : pedido
     }
     return render(request, 'pedidos.html', context)
+
+def register(request):
+    
+    return render(request, 'register.html')

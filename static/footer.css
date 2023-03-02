@@ -26,6 +26,7 @@
     align-items: center;
     justify-content: center;
     gap: .5em;
+    text-decoration: none;
 }
 
 .fas {
@@ -69,5 +70,4 @@
 }
 span{
     color: white;
-
 }

@@ -26,6 +26,7 @@ urlpatterns = [
     path('', views.index),
     path('pedidos/', views.pedidos),
     path('administrador/', include("EPP.urls")),
+    path('register/', views.register, name='register')
 ] 
 
 if settings.DEBUG:
