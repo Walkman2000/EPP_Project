@@ -6,7 +6,7 @@ class Proveedores(models.Model):
     email = models.EmailField()
 
     def __str__(self):
-        return f'{self.nombre}, {self.telefono}, {self.email} '
+        return f'{self.id}'
     class Meta:
         db_table = 'Proveedores'
 
@@ -17,7 +17,7 @@ class Productos(models.Model):
     descripcion = models.TextField()
     cantidad = models.FloatField()
     prov = models.ForeignKey(Proveedores, on_delete=models.CASCADE)
-    imagen = models.ImageField(upload_to="productos")
+    imagen = models.ImageField(upload_to="productos", null=True, blank=True)
 
     def __str__(self):
         return f'{self.nombre}'

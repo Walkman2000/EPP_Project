@@ -17,12 +17,3 @@ def pedidos(request):
 def register(request):
     
     return render(request, 'register.html')
-
-def agregar_productos(request):
-    cursor = connection.cursor()
-    clientes = cursor.execute("SELECT * FROM Clientes")
-    print("Clientes:",clientes.fetchall())
-
-    return render(request, 'productos.html',{
-        'clientes':clientes
-    })
