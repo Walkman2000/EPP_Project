@@ -150,7 +150,6 @@ form > input {
     padding: 20px;
     overflow-y: auto;
     overflow-x: hidden;
-
 }
 
 .caja {
@@ -194,6 +193,7 @@ form > input {
     flex-direction: column;
     height: 0px;
     transition: .3s linear;
+    
 }
 
 
