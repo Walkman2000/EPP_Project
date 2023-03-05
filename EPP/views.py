@@ -36,4 +36,16 @@ def agregar_productos(request):
         Productos.objects.create(nombre=request.POST.get("producto"), precio=request.POST.get("precio"), categoria=request.POST.get("categoria"), descripcion=request.POST.get("descripcion"), cantidad=request.POST.get("cantidad"), prov=Proveedores.objects.get(id=request.POST.get("sl_proveedores")), imagen=request.FILES["imagen"])
         # print(producto_guardado)
         return redirect("home")
-        
+
+# Pendiente checar en front
+def actualizar_producto(request):
+    if request.method == 'POST':
+        Productos.objects.update(nombre=request.POST.get("producto"), precio=request.POST.get("precio"), categoria=request.POST.get("categoria"), descripcion=request.POST.get("descripcion"), cantidad=request.POST.get("cantidad"), prov=Proveedores.objects.get(id=request.POST.get("sl_proveedores")), imagen=request.FILES["imagen"])
+
+        return redirect("home")
+# Checar
+def eliminar_producto(request):
+    id = Productos.objects.delete()
+    
+
+    

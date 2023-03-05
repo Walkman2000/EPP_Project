@@ -19,7 +19,7 @@
 
     <h2>Panel de administracion</h2>
     <div class="caja-formulario">
-      <form action="{% url 'addProduct' %}" method="post" enctype="multipart/form-data">
+      <form action="{% url 'addProduct'%}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="caja-input">
           <input type="text" name="producto" required />
@@ -32,9 +32,13 @@
           <i></i>
         </div>
         <div class="caja-input">
-          <input type="text" name="categoria" required />
-          <label>Categoria</label>
-          <i></i>
+          <p>Categoria</p>
+          <select name="categoria" class="form-select">
+            <option selected disabled>--Seleccionar--</option>
+            {% for producto in productos %}
+            <option value="{{ producto.id }}">{{ producto.categoria }}</option>
+            {% endfor %}
+          </select>
         </div>
         <div class="caja-input">
           <textarea
