@@ -256,6 +256,7 @@ form > input {
     background-color: #0386f1;
     transition: .3s linear;
     font-size: .8em;
+    text-decoration: none;
     
 }
 .btn-card:nth-child(1){

@@ -10,15 +10,20 @@ class Proveedores(models.Model):
     class Meta:
         db_table = 'Proveedores'
 
+class Categorias(models.Model):
+    categoria = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f'{self.id}'
+
 class Productos(models.Model):
     nombre = models.CharField(max_length=100)
     precio = models.FloatField()
-    categoria = models.CharField(max_length=30)
     descripcion = models.TextField()
     cantidad = models.FloatField()
     prov = models.ForeignKey(Proveedores, on_delete=models.CASCADE)
     imagen = models.ImageField(upload_to="productos", null=True, blank=True)
-
+    categoria = models.ForeignKey(Categorias, on_delete=models.CASCADE, default="")
     def __str__(self):
         return f'{self.nombre}'
     class Meta:

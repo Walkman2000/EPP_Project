@@ -1,9 +1,12 @@
 
 from django.contrib import admin
 
-from .models import Proveedores, Productos, Clientes, Usuarios, Compras, Ventas, detallesCompras, detallesVentas, MovimientosAlmacen, Carrito
+from .models import Proveedores, Productos, Clientes, Usuarios, Compras, Ventas, detallesCompras, detallesVentas, MovimientosAlmacen, Carrito, Categorias
 # Register your models here.
 
+@admin.register(Categorias)
+class CategoriasTabla(admin.ModelAdmin):
+    list_display = ['id', 'categoria']
 @admin.register(Productos)
 class ProductosTabla(admin.ModelAdmin):
     list_display = ['nombre','precio','categoria','descripcion','cantidad','prov','imagen']

@@ -33,10 +33,10 @@
         </div>
         <div class="caja-input">
           <p>Categoria</p>
-          <select name="categoria" class="form-select">
+          <select name="sl-categorias" class="form-select">
             <option selected disabled>--Seleccionar--</option>
-            {% for producto in productos %}
-            <option value="{{ producto.id }}">{{ producto.categoria }}</option>
+            {% for cat in categorias %}
+            <option value="{{ cat.id }}">{{ cat.categoria }}</option>
             {% endfor %}
           </select>
         </div>
@@ -91,12 +91,12 @@
             <button class="btn-card ver" role="link" type="button">
               <i class="fa-solid fa-eye"></i> Ver más
             </button>
-            <button class="btn-card modificar" type="button">
+            <a class="btn-card modificar" href="{% url 'updateProduct' %}" type="button">
               <i class="fa-solid fa-pen-to-square"></i> Modificar
-            </button>
-            <button class="btn-card eliminar" type="button">
+            </a>
+            <a class="btn-card eliminar" href="{% url 'deleteProduct' producto.id %}" type="button">
               <i class="fa-solid fa-eraser"></i> Eliminar
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -114,7 +114,7 @@
               .getElementsByTagName("p")[0].innerText;
             formulario.querySelector("[name='precio']").value = element
               .querySelector(".content")
-              .getElementsByTagName("p")[1]
+              .getElementsByTagName("p")[1];
               .innerText.split("$")[1];
             formulario.querySelector("[name ='categoria']").value = element
               .querySelector(".content")
