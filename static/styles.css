@@ -192,6 +192,7 @@ form > input {
     align-items: start;
     flex-direction: column;
     height: 0px;
+    width: 100%;
     transition: .3s linear;
     
 }

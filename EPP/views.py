@@ -12,7 +12,6 @@ def index_admin(request):
         contexto["productos"] = prods
         contexto["proveedores"] = provs
         contexto["categorias"]  = categorias
-        print("Productos:", prods)
         return render(request, "admin/productos.html", contexto)
     except (TemplateDoesNotExist, TemplateSyntaxError) as e:
         print(e)
@@ -29,6 +28,7 @@ def mostrar_productos(request):
 
 def agregar_productos(request):
     if request.method == 'POST':
+        
         print(request.POST.get("producto"))
         print(request.POST.get("precio"))
         print(request.POST.get("categoria"))
@@ -42,14 +42,16 @@ def agregar_productos(request):
 
 # Pendiente checar en front
 def actulizar_producto(request):
-    producto = Productos.objects.update(nombre=request.POST("producto"), 
-                                        precio=request.POST("precio"), 
-                                        categoria=Categorias.objects.get(id=request.POST.get("sl-categorias")), descripcion=request.POST("descripcion"),
-                                        cantidad=request.POST("cantidad"), 
-                                        prov=Proveedores.objects.get(id=request.POST.get("sl_proveedores")), imagen=request.FILES["imagen"])
-
-    producto.save()
-
+    cursor = connection.cursor()
+    print("ID:", request.POST.get("id_prod"))
+    print("Nombre:", request.POST.get("producto"))
+    print("Producto:", request.POST.get("precio"))
+    print("Descrip:", request.POST.get("descripcion"))
+    print("Cantidad",request.POST.get("cantidad"))
+    print("Categoria",request.POST.get("sl-categorias"))
+    print("Proveedor",request.POST.get("sl_proveedores"))
+    cursor.execute("UPDATE Productos SET nombre = %s WHERE id = %s",[request.POST.get("nombre"), request.POST.get("id")])
+    cursor.close()
     return redirect("home")
     
 

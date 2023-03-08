@@ -19,7 +19,7 @@
 
     <h2>Panel de administracion</h2>
     <div class="caja-formulario">
-      <form action="{% url 'addProduct'%}" method="post" enctype="multipart/form-data">
+      <form action="{% url 'addProduct' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="caja-input">
           <input type="text" name="producto" required />
@@ -66,7 +66,9 @@
         <div class="caja-input">
           <input type="file" class="form-control-file" accept="image/png, image/jpg, image/jpeg" name="imagen">
         </div>
-        <input type="submit" value="Agregar"  />
+        <input type="submit" name="agregar" value="Agregar"/>
+        <input class="btn btn-danger btnReset" type="reset" value="Cancelar"/>
+        <input type="hidden" name="id_prod">
       </form>
     </div>
     <div class="contenedor">
@@ -80,6 +82,7 @@
           </div>
           <h2>{{ producto.nombre }}</h2>
           <div class="content">
+            <span hidden="hidden" class="id" >{{producto.id}}</span>
             <p hidden="hidden" class="nombre">{{producto.nombre}}</p>
             <p class="precio">Precio: {{producto.precio}}</p>
             <p class="descripcion">Descripción: {{producto.descripcion}}</p>
@@ -91,7 +94,7 @@
             <button class="btn-card ver" role="link" type="button">
               <i class="fa-solid fa-eye"></i> Ver más
             </button>
-            <a class="btn-card modificar" href="{% url 'updateProduct' %}" type="button">
+            <a class="btn-card modificar" type="button">
               <i class="fa-solid fa-pen-to-square"></i> Modificar
             </a>
             <a class="btn-card eliminar" href="{% url 'deleteProduct' producto.id %}" type="button">
@@ -109,31 +112,30 @@
         element
           .querySelector(".modificar")
           .addEventListener("click", function () {
-            formulario.querySelector("[name='producto']").value = element
-              .querySelector(".content")
-              .getElementsByTagName("p")[0].innerText;
-            formulario.querySelector("[name='precio']").value = element
-              .querySelector(".content")
-              .getElementsByTagName("p")[1];
-              .innerText.split("$")[1];
-            formulario.querySelector("[name ='categoria']").value = element
-              .querySelector(".content")
-              .getElementsByTagName("p")[4]
-              .innerText.split(": ")[1];
-            formulario.querySelector("[name='cantidad']").value = element
-              .querySelector(".content")
-              .getElementsByTagName("p")[3]
-              .innerText.split(": ")[1];
-            formulario.querySelector("[name='descripcion']").value = element
-              .querySelector(".content")
-              .getElementsByTagName("p")[2]
-              .innerText.split(": ")[1];
-            formulario.querySelector("[name='sl_proveedores']").value = element
-              .querySelector(".content")
-              .getElementsByTagName("p")[5]
-              .innerText.split(": ")[1];
+            console.log(element)
+            formulario.removeAttribute("action")
+            formulario.setAttribute("action", "/administrador/actualizar_producto")
+            formulario.querySelector("[name='id_prod']").value = element.querySelector(".content").querySelector(".id").innerText;
+            formulario.querySelector("[name='producto']").value = element.querySelector(".content").getElementsByTagName("p")[0].innerText;
+            formulario.querySelector("[name='precio']").value = element.querySelector(".content").getElementsByTagName("p")[1].innerText.split(" ")[1];
+            formulario.querySelector("[name ='sl-categorias']").value = element.querySelector(".content").getElementsByTagName("p")[4].innerText.split(": ")[1];
+            formulario.querySelector("[name='cantidad']").value = element.querySelector(".content").getElementsByTagName("p")[3].innerText.split(": ")[1];
+            formulario.querySelector("[name='descripcion']").value = element.querySelector(".content").getElementsByTagName("p")[2].innerText.split(": ")[1];
+            formulario.querySelector("[name='sl_proveedores']").value = element.querySelector(".content").getElementsByTagName("p")[5].innerText.split(": ")[1];
             formulario.querySelector("[name='producto']").focus();
           });
+
+
+          function cambiar(){
+          btnAgregar = document.getElementsByName("agregar").value("Modificar")
+        } 
+        
+        
+        document.querySelector(".btnReset").addEventListener("click", function () {
+          formulario.removeAttribute("action")
+            formulario.setAttribute("action", "/administrador/agregar_producto")
+            cambiar()
+        })
 
         document.querySelectorAll(".ver").forEach((element) => {
           const contenido =
