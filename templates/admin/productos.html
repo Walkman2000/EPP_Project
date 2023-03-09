@@ -141,7 +141,9 @@
           const contenido =
             element.parentElement.parentElement.querySelector(".content");
           element.addEventListener("click", function () {
+            console.log(element)
             contenido.classList.toggle("active");
+            console.log(contenido)
             contenido.style.overflowY = "scroll";
           });
         });

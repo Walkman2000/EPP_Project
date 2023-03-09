@@ -42,7 +42,7 @@ class Carrito (models.Model):
 class Clientes(models.Model):
     nombre = models.CharField(max_length=50)
     direccion = models.CharField(max_length=100)
-    telefono = models.IntegerField()
+    telefono = models.CharField(max_length=20)
     email = models.EmailField()
 
     def __str__(self):
@@ -58,7 +58,7 @@ class Usuarios(models.Model):
     cliente = models.ForeignKey(Clientes, on_delete=models.CASCADE)
     
     def __str__(self):
-        return f'{self.usuario}, {self.contraseña}, {self.estado}, {self.cliente}'
+        return f'{self.usuario}'
 
     class Meta:
         db_table = 'Usuarios'

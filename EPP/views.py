@@ -1,7 +1,8 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.db import connection, DatabaseError, DataError, IntegrityError, InterfaceError, InternalError, ProgrammingError, OperationalError, Error, NotSupportedError
-from .models import Productos, Proveedores, Categorias
+from .models import Productos, Proveedores, Categorias, Compras, detallesCompras, Ventas, detallesVentas
 from django.template.exceptions import TemplateDoesNotExist, TemplateSyntaxError
+from django.utils.datastructures import MultiValueDictKeyError
 # Create your views here.
 def index_admin(request):
     contexto = {}
@@ -39,10 +40,8 @@ def agregar_productos(request):
         Productos.objects.create(nombre=request.POST.get("producto"), precio=request.POST.get("precio"), categoria=Categorias.objects.get(id=request.POST.get("sl-categorias")), descripcion=request.POST.get("descripcion"), cantidad=request.POST.get("cantidad"), prov=Proveedores.objects.get(id=request.POST.get("sl_proveedores")), imagen=request.FILES["imagen"])
         # print(producto_guardado)
         return redirect("home")
-
 # Pendiente checar en front
 def actulizar_producto(request):
-    cursor = connection.cursor()
     print("ID:", request.POST.get("id_prod"))
     print("Nombre:", request.POST.get("producto"))
     print("Producto:", request.POST.get("precio"))
@@ -50,14 +49,37 @@ def actulizar_producto(request):
     print("Cantidad",request.POST.get("cantidad"))
     print("Categoria",request.POST.get("sl-categorias"))
     print("Proveedor",request.POST.get("sl_proveedores"))
-    cursor.execute("UPDATE Productos SET nombre = %s WHERE id = %s",[request.POST.get("nombre"), request.POST.get("id")])
-    cursor.close()
-    return redirect("home")
     
+    Productos.objects.filter(pk=request.POST.get("id_prod")).update(nombre=request.POST.get("producto"), precio=request.POST.get("precio"), descripcion=request.POST.get("descripcion"), cantidad=request.POST.get("cantidad"))
+
+    try:
+        if request.FILES['imagen']:
+            p = Productos.objects.get(pk=request.POST.get("id_prod"))
+            p.imagen = request.FILES['imagen']
+            p.save()
+    except MultiValueDictKeyError:
+        pass
+
+    return redirect("home")
 
 def eliminar_producto(request, id_producto):
     print(id_producto)
     Productos.objects.get(id=id_producto).delete()
     return redirect("home")
-
     
+def compras_admin(request):
+    try:
+        cursor = connection.cursor()
+        # compras = cursor.execute("SELECT id_compra, fecha, u.usuario  FROM Compras as c, Usuarios as u where c.usuario_id = u.id")
+        cursor.execute("SELECT id_compra, fecha, u.usuario  FROM Compras inner join Usuarios as u")
+        c = cursor.fetchall()
+        print("Compras: ", c)
+        return render(request, "admin/compras.html", {
+            'compras' : c
+        })
+    except AttributeError as e:
+        print(e)
+        return HttpResponse("Problem")
+
+def ventas_admin(request):
+    return render(request, "detallesVenta.html")
