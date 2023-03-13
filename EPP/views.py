@@ -20,11 +20,11 @@ def index_admin(request):
 
 def mostrar_productos(request):
     cursor = connection.cursor()
-    clientes = cursor.execute("SELECT * FROM Clientes")
-    print("Clientes:",clientes.fetchall() )
+    productos = cursor.callproc("mostrar_productos")
+    print("Productos:",productos.fetchall() )
  
     return render(request, 'productos.html',{
-        'clientes':clientes
+        'productos': productos
     })
 
 def agregar_productos(request):
@@ -37,8 +37,13 @@ def agregar_productos(request):
         print(request.POST.get("cantidad"))
         print(request.POST.get("sl-categorias"))
         # try
-        Productos.objects.create(nombre=request.POST.get("producto"), precio=request.POST.get("precio"), categoria=Categorias.objects.get(id=request.POST.get("sl-categorias")), descripcion=request.POST.get("descripcion"), cantidad=request.POST.get("cantidad"), prov=Proveedores.objects.get(id=request.POST.get("sl_proveedores")), imagen=request.FILES["imagen"])
+        # Productos.objects.create(nombre=request.POST.get("producto"), precio=request.POST.get("precio"), categoria=Categorias.objects.get(id=request.POST.get("sl-categorias")), descripcion=request.POST.get("descripcion"), cantidad=request.POST.get("cantidad"), prov=Proveedores.objects.get(id=request.POST.get("sl_proveedores")), imagen=request.FILES["imagen"])
         # print(producto_guardado)
+        cursor = connection.cursor()
+        cursor.callproc("agregar_producto", [request.POST.get("producto"),request.POST.get("precio"), Categorias.objects.get(id=request.POST.get("sl-categorias")), request.POST.get("descripcion"), request.POST.get("cantidad"), Proveedores.objects.get(id=request.POST.get("sl_proveedores")),request.FILES["imagen"]])
+
+        c = cursor.fetchall()
+        print("Mensaje: ",c)
         return redirect("home")
 # Pendiente checar en front
 def actulizar_producto(request):

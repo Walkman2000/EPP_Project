@@ -16,13 +16,19 @@ class Categorias(models.Model):
     def __str__(self):
         return f'{self.id}'
 
+class Imagenes(models.Model):
+    imagen = models.ImageField(upload_to="imagenes", null=True, blank=True)
+
+    class Meta:
+        db_table = 'Imagenes'
+
 class Productos(models.Model):
     nombre = models.CharField(max_length=100)
     precio = models.FloatField()
     descripcion = models.TextField()
     cantidad = models.FloatField()
     prov = models.ForeignKey(Proveedores, on_delete=models.CASCADE)
-    imagen = models.ImageField(upload_to="productos", null=True, blank=True)
+    imagen = models.ForeignKey(Imagenes, on_delete=models.CASCADE, default="")
     categoria = models.ForeignKey(Categorias, on_delete=models.CASCADE, default="")
     def __str__(self):
         return f'{self.nombre}'
@@ -32,7 +38,6 @@ class Productos(models.Model):
 class Carrito (models.Model):
     monto = models.FloatField()
     producto = models.ForeignKey(Productos, on_delete=models.CASCADE)
-
     
     def __str__(self):
         return f'{self.monto}, {self.producto}'
