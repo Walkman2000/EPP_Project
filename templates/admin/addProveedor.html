@@ -19,22 +19,19 @@
 
     <h2>Panel de administracion</h2>
     <div class="caja-formulario">
-      <form action="{% url 'addProduct' %}" method="post" enctype="multipart/form-data">
+      <form action="{% url 'addProveedor' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="caja-input">
-          <input type="text" name="Proveedor" required />
+          <input type="text" name="proveedor" required />
           <label>Nombre Proveedor</label>
-          <i></i>
         </div>
         <div class="caja-input">
-          <input type="number" name="Email" step="any" required />
+          <input type="text" name="email" step="any" required />
           <label>Email</label>
-          <i></i>
         </div>
         <div class="caja-input">
-          <input type="text" name="Telefono" required />
+          <input type="text" name="telefono" required />
           <label>Telefono</label>
-          <i></i>
         </div>
         <input type="submit" name="agregar" value="Agregar"/>
         <input class="btn btn-danger btnReset" type="reset" value="Cancelar"/>

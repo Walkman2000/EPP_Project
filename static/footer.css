@@ -3,6 +3,9 @@
     --bg_dark: #242329;
     --bg_white: #fff;
 }
+footer{
+    margin-top: 50%;
+}
 .contact-content {
     width: 100%;
     display: flex;
