@@ -110,7 +110,7 @@ def ventas_admin(request):
     try:
         cursor = connection.cursor()
         # compras = cursor.execute("SELECT id_compra, fecha, u.usuario  FROM Compras as c, Usuarios as u where c.usuario_id = u.id")
-        cursor.execute("SELECT monto, fecha, u.usuario  FROM Compras inner join Usuarios as u")
+        cursor.execute("SELECT Ventas.id, monto, fecha, u.usuario  FROM Ventas inner join Usuarios as u")
         c = cursor.fetchall()
         print("Ventas: ", c)
         return render(request, "admin/ventas.html", {
