@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.db import connection, DatabaseError, DataError, IntegrityError, InterfaceError, InternalError, ProgrammingError, OperationalError, Error, NotSupportedError
-from .models import Productos, Proveedores, Categorias, Compras, detallesCompras, Ventas, detallesVentas, Imagenes
+from .models import Productos, Proveedores, Categorias, Compras, detallesCompras, Ventas, detallesVentas, Imagenes, comprasAdmin
 from django.template.exceptions import TemplateDoesNotExist, TemplateSyntaxError
 from django.utils.datastructures import MultiValueDictKeyError
 # Create your views here.
@@ -91,8 +91,7 @@ def agregar_proveedor(request):
     else:
         return render(request, "admin/addProveedor.html")
     
-
-def compras_admin(request):
+def compras_usuario(request):
     try:
         cursor = connection.cursor()
         # compras = cursor.execute("SELECT id_compra, fecha, u.usuario  FROM Compras as c, Usuarios as u where c.usuario_id = u.id")
@@ -120,11 +119,25 @@ def ventas_admin(request):
         print(e)
         return HttpResponse("Problem")
     
-def detalles_compras(request):
+def compras_admin(request):
+    contexto = {}
+    productos = Productos.objects.all()
+    proveedores = Proveedores.objects.all()
+    compras = comprasAdmin.objects.all()
+
+    contexto["productos"] = productos
+    contexto["proveedores"] = proveedores
+    contexto["conmpras"] = compras
+    cursor = connection.cursor()
+    cursor.callproc("registrar-compra-admin", [])
+    return render(request, "admin/compras_admin.html", contexto)
+
+def detalles_compras_usuario(request):
+
 
     return render(request, "admin/detallesCompras.html")
 
 def detalles_ventas(request):
-
+    
     return render(request, "admin/detallesVenta.html")
 

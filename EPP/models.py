@@ -79,6 +79,13 @@ class Compras(models.Model):
     class Meta:
         db_table = 'Compras'
 
+class comprasAdmin(models.Model):
+    fecha = models.DateField()
+    monto  = models.FloatField(default=0)
+    cantidad = models.FloatField(default=0)
+    proveedores = models.ForeignKey(Proveedores, on_delete=models.CASCADE)
+    producto = models.ForeignKey(Productos, on_delete=models.CASCADE)
+
 class Ventas(models.Model):
     fecha = models.DateField()
     usuario = models.ForeignKey(Usuarios, on_delete=models.CASCADE)
@@ -94,7 +101,7 @@ class detallesVentas(models.Model):
     cantidad = models.FloatField()
     producto = models.ForeignKey(Productos, on_delete=models.CASCADE)    
     venta = models.ForeignKey(Ventas, on_delete=models.CASCADE)    
-
+ 
     def __str__(self):
         return f'{self.cantidad}, {self.producto}, {self.venta}'
     
@@ -111,13 +118,6 @@ class detallesCompras(models.Model):
     
     class Meta:
         db_table = 'detallesCompras'
-
-# class cuentasCobrar (models.Model):
-#     monto = models.IntegerField()
-#     venta = models.ForeignKey(Ventas, on_delete=models.CASCADE)
-    
-#     class Meta:
-#         db_table = 'CuentasCobrar'
 
 class MovimientosAlmacen(models.Model):
     tipoMovimiento = models.CharField(max_length=50)
