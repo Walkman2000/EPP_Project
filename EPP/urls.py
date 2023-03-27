@@ -7,5 +7,10 @@ urlpatterns = [
     path("agregar_producto", agregar_productos, name="addProduct"),
     path("actualizar_producto", actulizar_producto, name="updateProduct"),
     path("eliminar_producto/<int:id_producto>", eliminar_producto, name="deleteProduct"),
-    path("compras", compras_admin, name="buysAdmin")
+    path("agregar_proveedor", agregar_proveedor, name="addProveedor"),
+    #path("compras", compras_admin, name="buysAdmin"),
+    path("ventas", ventas_admin, name="sellsAdmin"),
+    path("compras_admin", compras_admin, name="buysAdmin"),
+    path("detalles_ventas", detalles_ventas, name="sellsDetails")
+
 ]
