@@ -1,0 +1,19 @@
+.contForm {
+    padding: 20px;
+    margin: 0 auto;
+    width: 800px;
+}
+
+.contForm .flex-box {
+    display: flex;
+    align-items: center;
+    gap: 20px
+}
+
+.caja-input {
+    width: 400px;
+    border: 1px solid #000
+}
+.flex-box .caja-input input {
+    background: #fff;
+}

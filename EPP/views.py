@@ -13,12 +13,14 @@ def index_admin(request):
         prods =  cursor.fetchall()
         categorias = Categorias.objects.all()
         imagenes = Imagenes.objects.all()
+        compras = comprasAdmin.objects.all()
         for imagen in imagenes:
             print(imagen.id, imagen.imagen)
         contexto["productos"] = prods
         contexto["proveedores"] = provs
         contexto["categorias"]  = categorias
         contexto["imagenes"] = imagenes
+        contexto["compras"] = compras
         return render(request, "admin/productos.html", contexto)
     except (TemplateDoesNotExist, TemplateSyntaxError) as e:
         print(e)
@@ -52,7 +54,7 @@ def agregar_productos(request):
         cursor2.execute("UPDATE Productos SET imagen_id = %s WHERE id = %s" % (imagen.pk, c))
         print("ID: ",c)
         return redirect("home")
-# Pendiente checar en front
+
 def actulizar_producto(request):
     print("ID:", request.POST.get("id_prod"))
     print("Nombre:", request.POST.get("producto"))
@@ -123,14 +125,22 @@ def compras_admin(request):
     contexto = {}
     productos = Productos.objects.all()
     proveedores = Proveedores.objects.all()
-    compras = comprasAdmin.objects.all()
-
+    compras = comprasAdmin.objects.all().values('id','fecha','monto','cantidad', 'producto__nombre', 'proveedores__nombre')
     contexto["productos"] = productos
     contexto["proveedores"] = proveedores
-    contexto["conmpras"] = compras
-    cursor = connection.cursor()
-    cursor.callproc("registrar-compra-admin", [])
+    contexto["compras"] = compras
+
+    if request.method == 'POST':
+        print("fecha" + request.POST.get("fecha"))
+        print("monto" + request.POST.get("monto"))
+        print("cantidad" + request.POST.get("cantidad"))
+        print("producto" + request.POST.get("sl-producto"))
+        print("proveedor" + request.POST.get("sl-proveedores"))
+        cursor = connection.cursor()
+        cursor.callproc("registrar_compra_admin", [request.POST.get("fecha"), request.POST.get("monto"), request.POST.get("cantidad"), request.POST.get("sl-producto"), request.POST.get("sl-proveedores")])
+        return redirect("buysAdmin")
     return render(request, "admin/compras_admin.html", contexto)
+
 
 def detalles_compras_usuario(request):
 
