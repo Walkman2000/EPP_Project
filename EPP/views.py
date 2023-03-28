@@ -131,13 +131,16 @@ def compras_admin(request):
     contexto["compras"] = compras
 
     if request.method == 'POST':
-        print("fecha" + request.POST.get("fecha"))
-        print("monto" + request.POST.get("monto"))
-        print("cantidad" + request.POST.get("cantidad"))
-        print("producto" + request.POST.get("sl-producto"))
-        print("proveedor" + request.POST.get("sl-proveedores"))
-        cursor = connection.cursor()
-        cursor.callproc("registrar_compra_admin", [request.POST.get("fecha"), request.POST.get("monto"), request.POST.get("cantidad"), request.POST.get("sl-producto"), request.POST.get("sl-proveedores")])
+        # print("fecha" + request.POST.get("fecha"))
+        # print("monto", request.POST.getlist("monto"))
+        # print("cantidad", request.POST.getlist("cantidad"))
+        # print("producto", request.POST.getlist("sl-producto"))
+        # print("proveedor", request.POST.getlist("sl-proveedores"))
+
+        for i in range(0, len(request.POST.getlist("sl-producto"))):
+            cursor = connection.cursor()
+            print(request.POST.getlist("sl-producto")[i])
+            cursor.callproc("registrar_compra_admin", [request.POST.get("fecha"), request.POST.getlist("monto")[i], request.POST.getlist("cantidad")[i], request.POST.getlist("sl-producto")[i], request.POST.getlist("sl-proveedores")[i]])
         return redirect("buysAdmin")
     return render(request, "admin/compras_admin.html", contexto)
 

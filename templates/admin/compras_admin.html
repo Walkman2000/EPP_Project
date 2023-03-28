@@ -34,109 +34,58 @@
 
 {% block content %}
 
-<div>
     <div class="contForm">
-        <form method="POST">
+        <form class="form-clone" method="POST">
             {% csrf_token  %}
-           <div class="caja-input">
-<<<<<<< HEAD
-            <input type="text" name="fecha">
-            <label>Fecha</label>
-           </div>
-           <div class="caja-input">
-            <input type="number" name="monto">
-            <label>Monto</label>
-           </div>
-           <div class="caja-input">
-            <input type="number" name="cantidad">
-            <label>Cantidad</label>
-           </div>
-           <div class="caja-input">
-            <P>Producto</P>
-            <select name="sl_producto" class="form-select">         
-                <option selected disabled>--Seleccionar--</option>
-                {% for prod in productos %}
-                <option value="{{ prod.id }}">{{ prod.nombre }}</option>
-                {% endfor %}
-              </select>
-           </div>
-           <div class="caja-input">
-            <p>Proveedor</p>
-            <select name="sl_proveedores" class="form-select">    
-                <option selected disabled>--Seleccionar--</option>
-                {% for prov in proveedores %}
-                <option value="{{ prov.id }}">{{ prov.nombre }}</option>
-                {% endfor %}
-              </select>
-=======
-            <input type="date" name="fecha">
-            <label>Fecha</label>
-           </div>
-           <div class="flex-box">
-               <div class="caja-input">
-                <p>Monto</p>
-                <input type="number" name="monto">
+            <div class="caja-input">
+                <input type="date" name="fecha">
+                <label>Fecha</label>
                </div>
-    
-               <div class="caja-input">
-                <p>Cantidad</p>
-                <input type="number" name="cantidad">
-               </div>
-    
-               <div class="caja-input">
-                <p>Producto</p>
-                <select name="sl-producto" class="form-select">         
-                    <option selected disabled>--Seleccionar--</option>
-                    {% for prod in productos %}
-                    <option value="{{ prod.id }}">{{ prod.nombre }}</option>
-                    {% endfor %}
-                  </select>
-               </div>
-               <div class="caja-input">
-                <p>Proveedor</p>
-                <select name="sl-proveedores" class="form-select">    
-                    <option selected disabled>--Seleccionar--</option>
-                    {% for prov in proveedores %}
-                    <option value="{{ prov.id }}">{{ prov.nombre }}</option>
-                    {% endfor %}
-                  </select>
-               </div>
-           </div>
-           <div class="flex-box">
-               <div class="caja-input">
-                <p>Monto</p>
-                <input type="number" name="monto">
-               </div>
-    
-               <div class="caja-input">
-                <p>Cantidad</p>
-                <input type="number" name="cantidad">
-               </div>
-    
-               <div class="caja-input">
-                <p>Producto</p>
-                <select name="sl-producto" class="form-select">         
-                    <option selected disabled>--Seleccionar--</option>
-                    {% for prod in productos %}
-                    <option value="{{ prod.id }}">{{ prod.nombre }}</option>
-                    {% endfor %}
-                  </select>
-               </div>
-               <div class="caja-input">
-                <p>Proveedor</p>
-                <select name="sl-proveedores" class="form-select">    
-                    <option selected disabled>--Seleccionar--</option>
-                    {% for prov in proveedores %}
-                    <option value="{{ prov.id }}">{{ prov.nombre }}</option>
-                    {% endfor %}
-                  </select>
-               </div>
->>>>>>> 5cf350811b819eb808b1710ea0df01c860446c53
-           </div>
-           <input type="submit" name="agregar" value="Agregar">
+            <div class="contenido-inps">
+                <div class="flex-box">
+                    <div class="caja-input">
+                     <p>Monto</p>
+                     <input type="number" name="monto">
+                    </div>
+         
+                    <div class="caja-input">
+                     <p>Cantidad</p>
+                     <input type="number" name="cantidad">
+                    </div>
+         
+                    <div class="caja-input">
+                     <p>Producto</p>
+                     <select name="sl-producto" class="form-select">         
+                         <option selected disabled>--Seleccionar--</option>
+                         {% for prod in productos %}
+                         <option value="{{ prod.id }}">{{ prod.nombre }}</option>
+                         {% endfor %}
+                       </select>
+                    </div>
+                    <div class="caja-input">
+                     <p>Proveedor</p>
+                     <select name="sl-proveedores" class="form-select">    
+                         <option selected disabled>--Seleccionar--</option>
+                         {% for prov in proveedores %}
+                         <option value="{{ prov.id }}">{{ prov.nombre }}</option>
+                         {% endfor %}
+                       </select>
+                    </div>
+                </div>
+
+            </div>
+           
+           
+
+           <div class="content-buttons">
+            <input type="submit" name="agregar" value="Agregar">
+            <button type="button" class="btnAddForm"><i class="fa-solid fa-plus"></i></button>
+            <button type="button" class="btnDelForm"><i class="fa-solid fa-minus"></i></button>
+        </div>
+
         </form>
     </div>
-</div>
+
 
 
 <div class="contenedor">
@@ -162,5 +111,24 @@
     </table>
 </div>
 
+<script>
+    const formContent = document.querySelector(".form-clone .contenido-inps");
+    const btnAddForm = document.querySelector(".btnAddForm");
+    const btnDelForm = document.querySelector(".btnDelForm");
+    const formBox = document.querySelector(".flex-box");
+    
+    btnAddForm.addEventListener("click", function () {
+        var formCloned = formBox.cloneNode(true);
+        formContent.appendChild(formCloned)
+    })
+    btnDelForm.addEventListener("click", function () {
+        var box = document.querySelectorAll(".flex-box");
+        var boxForm = document.querySelector(".flex-box");
+
+        if(box.length > 1) {
+            formContent.removeChild(boxForm)
+        }
+    })
+</script>
 
 {% endblock %}
