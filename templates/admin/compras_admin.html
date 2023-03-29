@@ -16,6 +16,7 @@
 
     .caja-input {
         width: 400px;
+        margin-top: 20px;
     }
 
     form .caja-input select {
@@ -29,6 +30,54 @@
         border-radius: 5px;
         background: #fff;
     }
+    
+    .content-buttons input {
+        margin-top: 20px;
+        margin-right: 30px;
+        background-color: #0759a5; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 10px;
+    }
+
+    .content-buttons input :hover {
+        background-color: #f4f9f5; /* Green */
+        color: #4CAF50;
+    }
+
+    .content-buttons button {
+        margin-top: 20px;
+        margin-right: 30px;
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 10px;
+    }
+    
+    .content-buttons :nth-child(3){
+        margin-top: 20px;
+        background-color: #f70000; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 10px;
+    }
+
+
 </style>
 {% endblock %}
 
@@ -38,8 +87,8 @@
         <form class="form-clone" method="POST">
             {% csrf_token  %}
             <div class="caja-input">
+                <p>Fecha</p>
                 <input type="date" name="fecha">
-                <label>Fecha</label>
                </div>
             <div class="contenido-inps">
                 <div class="flex-box">
