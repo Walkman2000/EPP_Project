@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'EPP.apps.EppConfig'
+    'EPP.apps.EppConfig',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +81,7 @@ DATABASES = {
         'HOST': '162.241.62.45',
         'NAME': 'fluidos4_tienda_sigssmac',
         'USER': 'fluidos4_hazardousback',
-        'PASSWORD': '0uFM&UV-G13+',
+        'PASSWORD': 'Sigssmac2023++-??',
         'PORT': 3306,
     }
 }
