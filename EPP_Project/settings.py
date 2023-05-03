@@ -80,7 +80,7 @@ DATABASES = {
         'HOST': '162.241.62.45',
         'NAME': 'fluidos4_tienda_sigssmac',
         'USER': 'fluidos4_hazardousback',
-        'PASSWORD': '0uFM&UV-G13+',
+        'PASSWORD': 'Sigssmac2023++-??',
         'PORT': 3306,
     }
 }

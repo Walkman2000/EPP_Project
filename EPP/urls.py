@@ -11,6 +11,6 @@ urlpatterns = [
     #path("compras", compras_admin, name="buysAdmin"),
     path("ventas", ventas_admin, name="sellsAdmin"),
     path("compras_admin", compras_admin, name="buysAdmin"),
-    path("detalles_ventas", detalles_ventas, name="sellsDetails")
+    path("detalles_ventas/<int:id_venta>", detalles_ventas, name="sellsDetails")
 
 ]

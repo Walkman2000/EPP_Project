@@ -29,26 +29,26 @@
             <li class="nav-item">
               <a class="nav-link" href="/pedidos">Mis Pedidos</a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Carrito
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                <li><a class="dropdown-item" href="#">Producto 1</a></li>
-                <li><a class="dropdown-item" href="#">Producto 2</a></li>
-                <li><a class="dropdown-item" href="#">Producto 3</a></li>
-                <!-- <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li> -->
-              </ul>
-            </li>
+
+            <div class="flex-row-reverse">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
+                  data-bs-toggle="dropdown" aria-expanded="false"> <i class="fa-solid fa-cart-shopping"></i>
+                  Carrito
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                  <li><a class="dropdown-item" href="#">Producto 1</a></li>
+                  <li><a class="dropdown-item" href="#">Producto 2</a></li>
+                  <li><a class="dropdown-item" href="#">Producto 3</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+            </div>
+            
           </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Busqueda" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
-          </form>
         </div>
       </div>
     </nav>

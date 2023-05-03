@@ -64,7 +64,10 @@ def actulizar_producto(request):
     print("Categoria",request.POST.get("sl-categorias"))
     print("Proveedor",request.POST.get("sl_proveedores"))
     
-    Productos.objects.filter(pk=request.POST.get("id_prod")).update(nombre=request.POST.get("producto"), precio=request.POST.get("precio"), descripcion=request.POST.get("descripcion"), cantidad=request.POST.get("cantidad"))
+    Productos.objects.filter(pk=request.POST.get("id_prod")).update(nombre=request.POST.get("producto"), 
+                                                                    precio=request.POST.get("precio"),
+                                                                    descripcion=request.POST.get("descripcion"), 
+                                                                    cantidad=request.POST.get("cantidad"))
 
     try:
         if request.FILES['imagen']:
@@ -144,13 +147,21 @@ def compras_admin(request):
         return redirect("buysAdmin")
     return render(request, "admin/compras_admin.html", contexto)
 
-
 def detalles_compras_usuario(request):
-
 
     return render(request, "admin/detallesCompras.html")
 
-def detalles_ventas(request):
-    
-    return render(request, "admin/detallesVenta.html")
+def detalles_ventas(request, id_venta):
+    contexto = {}
+    detalles_ventas = detallesVentas.objects.filter(venta = id_venta).values('id','venta_id', 'producto__nombre', 'cantidad','producto__precio')
+    contexto["detalles_ventas"] = detalles_ventas
+    return render(request, "admin/detallesVenta.html", contexto)
 
+'''
+Consulta para mostrar los detalles de las ventas
+select v.id, p.nombre, p.precio, dv.cantidad, v.fecha from fluidos4_tienda_sigssmac.detallesVentas as dv 
+inner JOIN fluidos4_tienda_sigssmac.Ventas as v 
+ON dv.venta_id = v.id
+inner JOIN fluidos4_tienda_sigssmac.Productos as p
+on dv.producto_id = p.id and v.id = 4;
+'''

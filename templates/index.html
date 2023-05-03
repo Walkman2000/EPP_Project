@@ -2,7 +2,12 @@
 {% load static %}
 {% block content %}
 <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />-->
-
+<style>
+    h2{
+        text-align: center;
+        margin-top: 20px;
+    }
+</style>
 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -25,301 +30,31 @@
     </button>
   </div>
 
-
-<section class="contenedor">
-    <div class="container">
-        <h2 class="titles">Cascos</h2>
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="caja">
-                        <div>
+<h2>Productos</h2>
+<div class="contenedor">
+    {% for producto in productos %}
+                    <div class="caja" style="width: 30%; height: auto; min-height: 300px;" >                   
                             <div class="img-box">
-                                <img src="https://cms.grupoferrepat.net/assets/img/productos/14294.jpg">
+                                {% if producto.7 is not None %}
+                                <img src="/media/{{producto.7}}">
                                 <!-- <img src="img/"> -->
+                                {% endif %}
                             </div>
-                            <h2>Casco para protección</h2>
+                            <h2>{{producto.nombre}}</h2>
                             <div class="content">
-                                <p hidden="hidden">Casco para protección</p>
-                                <p>Medida: Mediana</p>
-                                <p>Categoria: Casco</p>
-                                <p>Precio: $203.00</p>
-                                <p>Cantidad en existencia: 20</p>
-                                <p>Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste assumenda velit minus temporibus nulla eum minima, provident officiis ad reprehenderit.</p>
-                                <p>Proveedor: Proveedor 1</p>
+                                <span hidden="hidden">{{producto.1}}</span>
+                                <h2 class="producto">{{producto.1}}</h2>
+                                <p class="precio">Precio: {{producto.2}}</p>
+                                <p class="descripcion">Descripción: {{producto.3}}</p>
+                                <p class="cantidad">Cantidad: {{producto.4}}</p>
+                                <p class="categorias">Categoria: {{producto.5}}</p>
+                                <p class="proveedor">Proveedor{{producto.6}}</p>
                             </div>
                             <div class="btns-caja">
                                 <button class="btn-card ver" role="link" type="button"><i class="fa-solid fa-eye"></i> Ver más</button>
-                                <button class="btn-card comprar" type="button"><i class="fa-solid fa-shop"></i> Comprar</button>  
-                            </div>
-                        </div>
+                                <button class="btn-card comprar" type="button"><i class="fa-solid fa-cart-shopping"></i> Carrito</button>  
+                            </div>    
+                        </div> 
+                        {% endfor %}
                     </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="caja">
-                        <div>
-                            <div class="img-box">
-                                <img src="https://img.uline.com/is/image/uline/S-10512?$Mobile_SI$">
-                            </div>
-                            <h2>Casco de seguridad</h2>
-                            <div class="content">
-                                <p hidden="hidden">Casco de seguridad</p>
-                                <p>Medida: Mediana</p>
-                                <p>Categoria: Casco</p>
-                                <p>Precio: $280.72</p>
-                                <p>Cantidad en existencia: 45</p>
-                                <p>Descripción: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, eos. Voluptate omnis porro obcaecati perspiciatis? Neque perferendis odit quae ea.</p>
-                                <p>Proveedor: Proveedor 2</p>
-                            </div>
-                            <div class="btns-caja">
-                                <button class="btn-card ver" role="link" type="button"><i class="fa-solid fa-eye"></i> Ver más</button>
-                                <button class="btn-card comprar" type="button"><i class="fa-solid fa-shop"></i>Comprar</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="swiper-slide">
-                    <div class="caja">
-                        <div>
-                            <div class="img-box">
-                                <img src="https://cdn.shopify.com/s/files/1/0033/8418/0848/products/cd440337-217b-40da-b50b-e66b815fb783_1024x.jpg?v=1675600585">
-                            </div>
-                            <h2>Casco de seguridad color naranja</h2>
-                            <div class="content">
-                                <p hidden="hidden">Casco de seguridad color naranja</p>
-                                <p>Medida: Mediana</p>
-                                <p>Categoria: Casco</p>
-                                <p>Precio: $203.00</p>
-                                <p>Cantidad en existencia: 158</p>
-                                <p>Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente blanditiis voluptatibus architecto odio, omnis accusantium modi inventore harum, asperiores illum temporibus maiores eaque.</p>
-                                <p>Proveedor: Proveedor 3</p>
-                            </div>
-                            <div class="btns-caja">
-                                <button class="btn-card ver" role="link" type="button"><i class="fa-solid fa-eye"></i> Ver más</button>
-                                <button class="btn-card comprar" type="button"><i class="fa-solid fa-shop"></i> Comprar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="caja">
-                        <div>
-                            <div class="img-box">
-                                <img src="https://cdn.shopify.com/s/files/1/0033/8418/0848/products/cd440337-217b-40da-b50b-e66b815fb783_1024x.jpg?v=1675600585">
-                            </div>
-                            <h2>Casco de seguridad color naranja</h2>
-                            <div class="content">
-                                <p hidden="hidden">Casco de seguridad color naranja</p>
-                                <p>Medida: Mediana</p>
-                                <p>Categoria: Casco</p>
-                                <p>Precio: $203.00</p>
-                                <p>Cantidad en existencia: 158</p>
-                                <p>Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente blanditiis voluptatibus architecto odio, omnis accusantium modi inventore harum, asperiores illum temporibus maiores eaque.</p>
-                                <p>Proveedor: Proveedor 3</p>
-                            </div>
-                            <div class="btns-caja">
-                                <button class="btn-card ver" role="link" type="button"><i class="fa-solid fa-eye"></i> Ver más</button>
-                                <button class="btn-card comprar" type="button"><i class="fa-solid fa-shop"></i> Comprar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide"><div class="caja">
-                    <div>
-                        <div class="img-box">
-                            <img src="https://cdn.shopify.com/s/files/1/0033/8418/0848/products/cd440337-217b-40da-b50b-e66b815fb783_1024x.jpg?v=1675600585">
-                        </div>
-                        <h2>Casco de seguridad color naranja</h2>
-                        <div class="content">
-                            <p hidden="hidden">Casco de seguridad color naranja</p>
-                            <p>Medida: Mediana</p>
-                            <p>Categoria: Casco</p>
-                            <p>Precio: $203.00</p>
-                            <p>Cantidad en existencia: 158</p>
-                            <p>Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente blanditiis voluptatibus architecto odio, omnis accusantium modi inventore harum, asperiores illum temporibus maiores eaque.</p>
-                            <p>Proveedor: Proveedor 3</p>
-                        </div>
-                        <div class="btns-caja">
-                            <button class="btn-card ver" role="link" type="button"><i class="fa-solid fa-eye"></i> Ver más</button>
-                            <button class="btn-card comprar" type="button"><i class="fa-solid fa-shop"></i> Comprar</button>
-                        </div>
-                    </div>
-                </div></div>
-
-            </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-        </div>
-    </div>
-</section>
-<section class="contenedor">
-    <div class="container">
-        <h2 class="titles">Lentes de Seguridad</h2>
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="caja">
-                        <div>
-                            <div class="img-box">
-                                <img src="https://img.uline.com/is/image/uline/S-5685?$Mobile_SI$ ">
-                                <!-- <img src="img/"> -->
-                            </div>
-                            <h2>Casco para protección</h2>
-                            <div class="content">
-                                <p hidden="hidden">Casco para protección</p>
-                                <p>Medida: Mediana</p>
-                                <p>Categoria: Casco</p>
-                                <p>Precio: $203.00</p>
-                                <p>Cantidad en existencia: 20</p>
-                                <p>Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste assumenda velit minus temporibus nulla eum minima, provident officiis ad reprehenderit.</p>
-                                <p>Proveedor: Proveedor 1</p>
-                            </div>
-                            <div class="btns-caja">
-                                <button class="btn-card ver" role="link" type="button"><i class="fa-solid fa-eye"></i> Ver más</button>
-                                <button class="btn-card comprar" type="button"><i class="fa-solid fa-shop"></i> Comprar</button>  
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="caja">
-                        <div>
-                            <div class="img-box">
-                                <img src="https://verticeindustrial.mx/wp-content/uploads/2021/02/TITANIUM_NCR.png">
-                            </div>
-                            <h2>Casco de seguridad</h2>
-                            <div class="content">
-                                <p hidden="hidden">Casco de seguridad</p>
-                                <p>Medida: Mediana</p>
-                                <p>Categoria: Casco</p>
-                                <p>Precio: $280.72</p>
-                                <p>Cantidad en existencia: 45</p>
-                                <p>Descripción: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, eos. Voluptate omnis porro obcaecati perspiciatis? Neque perferendis odit quae ea.</p>
-                                <p>Proveedor: Proveedor 2</p>
-                            </div>
-                            <div class="btns-caja">
-                                <button class="btn-card ver" role="link" type="button"><i class="fa-solid fa-eye"></i> Ver más</button>
-                                <button class="btn-card comprar" type="button"><i class="fa-solid fa-shop"></i>Comprar</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="swiper-slide">
-                    <div class="caja">
-                        <div>
-                            <div class="img-box">
-                                <img src="https://cdn.shopify.com/s/files/1/0033/8418/0848/products/cd440337-217b-40da-b50b-e66b815fb783_1024x.jpg?v=1675600585">
-                            </div>
-                            <h2>Casco de seguridad color naranja</h2>
-                            <div class="content">
-                                <p hidden="hidden">Casco de seguridad color naranja</p>
-                                <p>Medida: Mediana</p>
-                                <p>Categoria: Casco</p>
-                                <p>Precio: $203.00</p>
-                                <p>Cantidad en existencia: 158</p>
-                                <p>Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente blanditiis voluptatibus architecto odio, omnis accusantium modi inventore harum, asperiores illum temporibus maiores eaque.</p>
-                                <p>Proveedor: Proveedor 3</p>
-                            </div>
-                            <div class="btns-caja">
-                                <button class="btn-card ver" role="link" type="button"><i class="fa-solid fa-eye"></i> Ver más</button>
-                                <button class="btn-card comprar" type="button"><i class="fa-solid fa-shop"></i> Comprar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="caja">
-                        <div>
-                            <div class="img-box">
-                                <img src="https://cdn.shopify.com/s/files/1/0033/8418/0848/products/cd440337-217b-40da-b50b-e66b815fb783_1024x.jpg?v=1675600585">
-                            </div>
-                            <h2>Casco de seguridad color naranja</h2>
-                            <div class="content">
-                                <p hidden="hidden">Casco de seguridad color naranja</p>
-                                <p>Medida: Mediana</p>
-                                <p>Categoria: Casco</p>
-                                <p>Precio: $203.00</p>
-                                <p>Cantidad en existencia: 158</p>
-                                <p>Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente blanditiis voluptatibus architecto odio, omnis accusantium modi inventore harum, asperiores illum temporibus maiores eaque.</p>
-                                <p>Proveedor: Proveedor 3</p>
-                            </div>
-                            <div class="btns-caja">
-                                <button class="btn-card ver" role="link" type="button"><i class="fa-solid fa-eye"></i> Ver más</button>
-                                <button class="btn-card comprar" type="button"><i class="fa-solid fa-shop"></i> Comprar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide"><div class="caja">
-                    <div>
-                        <div class="img-box">
-                            <img src="https://cdn.shopify.com/s/files/1/0033/8418/0848/products/cd440337-217b-40da-b50b-e66b815fb783_1024x.jpg?v=1675600585">
-                        </div>
-                        <h2>Casco de seguridad color naranja</h2>
-                        <div class="content">
-                            <p hidden="hidden">Casco de seguridad color naranja</p>
-                            <p>Medida: Mediana</p>
-                            <p>Categoria: Casco</p>
-                            <p>Precio: $203.00</p>
-                            <p>Cantidad en existencia: 158</p>
-                            <p>Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente blanditiis voluptatibus architecto odio, omnis accusantium modi inventore harum, asperiores illum temporibus maiores eaque.</p>
-                            <p>Proveedor: Proveedor 3</p>
-                        </div>
-                        <div class="btns-caja">
-                            <button class="btn-card ver" role="link" type="button"><i class="fa-solid fa-eye"></i> Ver más</button>
-                            <button class="btn-card comprar" type="button"><i class="fa-solid fa-shop"></i> Comprar</button>
-                        </div>
-                    </div>
-                </div></div>
-    
-            </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-        </div>
-    </div>
-</section>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-<script>
-    var swiper = new Swiper(".mySwiper", {
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-            slidesPerView: 1,
-            spaceBetween: 20,
-
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-
-            breakpoints: {
-                620: {
-                    slidesPerView: 1,
-                    spaceBetween: 20,
-                },
-                600: {
-                    slidesPerView: 2,
-                    spaceBetween: 40,
-                },
-                920: {
-                    slidesPerView: 3,
-                    spaceBetween: 40,
-                },
-                1240: {
-                    slidesPerView: 4,
-                    spaceBetween: 50,
-                },
-            }
-        });
-        
-</script>
-
-
-
 {% endblock %}
