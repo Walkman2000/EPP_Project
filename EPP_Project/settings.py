@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'EPP.apps.EppConfig'
+    'EPP.apps.EppConfig',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
