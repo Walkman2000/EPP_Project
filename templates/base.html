@@ -29,27 +29,57 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/pedidos">Mis Pedidos</a>
-            </li>
-
-            <div class="flex-row-reverse">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
-                  data-bs-toggle="dropdown" aria-expanded="false"> <i class="fa-solid fa-cart-shopping"></i>
-                  Carrito
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                  <li><a class="dropdown-item" href="#">Producto 1 <i class="fa-solid fa-plus"> <i class="fa-solid fa-window-minimize"></i> </i><i class="fa-solid fa-trash"></i> </a></li>
-                  <li><a class="dropdown-item" href="#">Producto 2</a></li>
-                  <li><a class="dropdown-item" href="#">Producto 3</a></li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-            </div>
-            
+            </li>            
           </ul>
+
+          <div class="container-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="icon-cart"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+              />
+            </svg>
+            <div class="count-products">
+              <span id="contador-productos">0</span>
+            </div>
+    
+            <div class="container-cart-products hidden-cart">
+              <div class="cart-product">
+                <div class="info-cart-product">
+                                <span class="cantidad-producto-carrito">1</span>
+                                <p class="titulo-producto-carrito">Zapatos Nike</p>
+                                <span class="precio-producto-carrito">$80</span>
+                            </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="icon-close"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </div>
+                        <div class="cart-total">
+                            <h3>Total:</h3>
+                            <span class="total-pagar">$200</span>
+                        </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </nav>
