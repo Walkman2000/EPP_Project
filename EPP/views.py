@@ -4,7 +4,8 @@ from .models import Productos, Proveedores, Categorias, Compras, detallesCompras
 from django.template.exceptions import TemplateDoesNotExist, TemplateSyntaxError
 from django.utils.datastructures import MultiValueDictKeyError
 import xlsxwriter
-import datetime
+import datetime, io
+from django.urls.exceptions import NoReverseMatch
 # Create your views here.
 def index_admin(request):
     contexto = {}
@@ -155,30 +156,39 @@ def detalles_compras_usuario(request):
 
 def detalles_ventas(request, id_venta):
     contexto = {}
-    detalles_ventas = detallesVentas.objects.filter(venta = id_venta).values('id','venta_id', 'producto__nombre', 'cantidad','producto__precio')
-    contexto["detalles_ventas"] = detalles_ventas
-    print(detalles_ventas)
-    return render(request, "admin/detallesVenta.html", contexto)
+    try:
+        detalles_ventas = detallesVentas.objects.filter(venta = id_venta).values('id','venta_id', 'producto__nombre', 'cantidad','producto__precio')
+        contexto["detalles_ventas"] = detalles_ventas
+        print(detalles_ventas)
+        return render(request, "admin/detallesVenta.html", contexto)
+    except NoReverseMatch as e:
+        print(e)
+        return HttpResponse("Algo salió mal")
 
 def reports (request, id_venta):
+    contexto = {}
     fecha_hoy = datetime.datetime.now()
     hoy = str(fecha_hoy.month) + "-" + str(fecha_hoy.day) + "-" + str(fecha_hoy.year)
-    workbook = xlsxwriter.Workbook('test.xlsx')
+    output = io.BytesIO()
+    workbook = xlsxwriter.Workbook(output)
     hoja = workbook.add_worksheet('reporte')
     # obtencion de los datos
     resultado = detallesVentas.objects.filter(venta = id_venta).values('id','venta_id', 'producto__nombre', 'cantidad','producto__precio')
-
+    print(resultado)
+    contexto["detalles_ventas"] = detalles_ventas
     estilo_cuerpo = workbook.add_format({
         'font_name':'Arial',
         'border': 1
     })
     estilo_cuerpo.set_align("center")
+    estilo_cuerpo.set_align("vcenter")
 
     estilo_encabezado = workbook.add_format({
         'bold': True,
-        'font-size': 18
     })
     estilo_encabezado.set_align("center")
+    estilo_encabezado.set_align("vcenter")
+
     # Encabezado
     hoja.write(3,0, "ID VENTA", estilo_cuerpo)
     hoja.write(3,1, "PRODUCTO", estilo_cuerpo)
@@ -186,9 +196,28 @@ def reports (request, id_venta):
     hoja.write(3,3, "PRECIO", estilo_cuerpo)
     hoja.write(3,4, "TOTAL", estilo_cuerpo)
 
-    workbook.close()
+    fila = 4 
+    
+    
+    # Iteracion de datos
 
-    return render(request, 'admin/generar_reportes.html')
+    for result in resultado: 
+        hoja.write(fila,  0, result['venta_id'])
+        hoja.write(fila,  1, result['producto__nombre'])
+        hoja.write(fila,  2, result['cantidad'])
+        hoja.write(fila,  3, result['producto__precio'])
+        hoja.write(fila,  4, result['producto__precio']*result['cantidad'])
+        fila += 1 
+
+    workbook.close()
+    output.seek(0)
+    filename = f'reports{hoy}.xlsx'
+    response = HttpResponse(
+        output,
+        content_type = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    )
+    response['Content-Disposition'] = f'attachment; filename = {filename}'
+    return response
 
 '''
 Consulta para mostrar los detalles de las ventas

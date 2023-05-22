@@ -18,7 +18,7 @@
 
 
 <h2>Productos</h2>
-<div class="contenedor">
+<div class="contenedorCliente">
     {% for producto in productos %}
                     <div class="caja" style="width: 30%; height: auto; min-height: 300px;" >                   
                             <div class="img-box">
@@ -44,4 +44,5 @@
                         </div> 
                         {% endfor %}
                     </div>
+    <script src="{% static 'js/script.js' %}"></script>
 {% endblock %}

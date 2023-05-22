@@ -128,10 +128,6 @@
           }
         })
 
-          function cambiar(){
-          btnAgregar = document.getElementsByName("agregar").value("Modificar")
-        } 
-        
         
         document.querySelector(".btnReset").addEventListener("click", function () {
           formulario.removeAttribute("action")
@@ -139,13 +135,12 @@
             cambiar()
         })
 
+
         document.querySelectorAll(".ver").forEach((element) => {
           const contenido =
             element.parentElement.parentElement.querySelector(".content");
           element.addEventListener("click", function () {
-            console.log(element)
             contenido.classList.toggle("active");
-            console.log(contenido)
             contenido.style.overflowY = "scroll";
           });
         });

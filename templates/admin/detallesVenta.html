@@ -30,7 +30,8 @@
               </tbody>
           </table>
       </div> 
-      <button class="btn-card ver" role="link" type="button"><i class="fa-solid fa-file-pdf"></i> Generar PDF</button>
+      
+      <a class="btn-card ver" href="{% url 'generateReport' id_venta=detalles_ventas.0.venta_id %}" role="link" type="button"><i class="fa-solid fa-file-pdf"></i> Generar PDF</a>
   </div>
   {% endblock %}
 
