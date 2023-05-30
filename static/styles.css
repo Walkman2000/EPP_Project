@@ -86,6 +86,7 @@ body {
 }
 
 .precio-producto-carrito{
+    color: #000;
     font-weight: 700;
     font-size: 20px;
     margin-left: 10px;
@@ -120,6 +121,7 @@ body {
 }
 
 .total-pagar{
+    color: #000;
     font-size: 20px;
     font-weight: 900;
 }
