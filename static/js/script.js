@@ -7,7 +7,7 @@ const btnCart = document.querySelector('.container-cart-icon')
       containerCartProducts.classList.toggle('hidden-cart')
     })
 
-/* agregar productos a carrito */
+/* agregar productos a carrito 
 const cartInfo = document.querySelector('.cart-product')
 const rowProduct = document.querySelector('.row-product')
 
@@ -17,22 +17,25 @@ let allProducts = []
 
 
 productList.addEventListener('click', e => {
-    if(e.target.classList.contains('btn-card comprar')){
+    if(e.target.classList.contains('comprar')){
         console.log(e.target.parentElement)
-        
 
-
-
+        console.log(product.querySelector('h2'))
     }
 
 })
-/*  fin  */
+ fin  */
 
-/* ver mas 
+document.getElementById("btnCarrito").addEventListener("click", function(){
+    var detalles = document.getElementById("infCar").textContent;
+    console.log(detalles);
+});
+
+/* ver mas*/ 
 document.querySelectorAll(".ver").forEach(element => {
     const contenido = element.parentElement.parentElement.querySelector(".content");
     element.addEventListener("click", function () {
         contenido.classList.toggle("active")
         contenido.style.overflowY = "scroll";
     })
-})*/
+})

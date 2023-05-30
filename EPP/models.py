@@ -59,7 +59,6 @@ class Clientes(models.Model):
     class Meta:
         db_table = 'Clientes'
 
-
 class Compras(models.Model):
     id_compra = models.CharField(max_length=10, default="")
     fecha = models.DateField()
