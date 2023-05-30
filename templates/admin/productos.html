@@ -106,9 +106,7 @@
       const caja_contenido = document.querySelectorAll(".caja > div");
       const formulario = document.querySelector(".caja-formulario > form");
       caja_contenido.forEach((element) => {
-        element
-          .querySelector(".modificar")
-          .addEventListener("click", function () {
+        element.querySelector(".modificar").addEventListener("click", function () {
             console.log(element)
             formulario.removeAttribute("action")
             formulario.setAttribute("action", "/administrador/actualizar_producto")
@@ -116,34 +114,30 @@
             formulario.querySelector("[name='producto']").value = element.querySelector(".content").getElementsByTagName("p")[0].innerText;
             formulario.querySelector("[name='precio']").value = element.querySelector(".content").getElementsByTagName("p")[1].innerText.split(" ")[1];
             formulario.querySelector("[name ='sl-categorias']").value = element.querySelector(".content").getElementsByTagName("p")[2].innerText.split(": ")[1];
-            formulario.querySelector("[name='cantidad']").value = element.querySelector(".content").getElementsByTagName("p")[3].innerText.split(": ")[1];
-            formulario.querySelector("[name='descripcion']").value = element.querySelector(".content").getElementsByTagName("p")[4].innerText.split(": ")[1];
+            formulario.querySelector("[name='descripcion']").value = element.querySelector(".content").getElementsByTagName("p")[3].innerText.split(": ")[1];
+            formulario.querySelector("[name='cantidad']").value = element.querySelector(".content").getElementsByTagName("p")[4].innerText.split(": ")[1];
             formulario.querySelector("[name='sl_proveedores']").value = element.querySelector(".content").getElementsByTagName("p")[5].innerText.split(": ")[1];
             formulario.querySelector("[name='producto']").focus();
           });
 
-        formulario.querySelector("[name='sl_proveedores']").addEventListener("change", function(){
-          if (this.value == "elegir"){
-            location.href="{% url 'addProveedor' %}"
-          }
-        })
-
-        
         document.querySelector(".btnReset").addEventListener("click", function () {
           formulario.removeAttribute("action")
             formulario.setAttribute("action", "/administrador/agregar_producto")
             cambiar()
-        })
-
-
-        document.querySelectorAll(".ver").forEach((element) => {
-          const contenido =
+          })
+          document.querySelectorAll(".ver").forEach((element) => {
+            const contenido =
             element.parentElement.parentElement.querySelector(".content");
-          element.addEventListener("click", function () {
-            contenido.classList.toggle("active");
+            element.addEventListener("click", function () {
+              contenido.classList.toggle("active");
             contenido.style.overflowY = "scroll";
           });
         });
       });
+      formulario.querySelector("[name='sl_proveedores']").addEventListener("change", function() {
+        if(this.value == "elegir") {
+          location.href = "{% url 'addProveedor' %}"
+        }
+      })
     </script>
     {% endblock %}

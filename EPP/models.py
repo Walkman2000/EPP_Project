@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from cuentas.models import CustomUser
 class Proveedores(models.Model):
     nombre = models.CharField(max_length=50, null=True)
     telefono = models.CharField(max_length=20, null=True)
@@ -15,6 +16,8 @@ class Categorias(models.Model):
 
     def __str__(self):
         return f'{self.id}'
+    class Meta:
+        db_table = 'Categorias'
 
 class Imagenes(models.Model):
     imagen = models.ImageField(upload_to="imagenes", null=True, blank=True)
@@ -56,22 +59,11 @@ class Clientes(models.Model):
     class Meta:
         db_table = 'Clientes'
 
-class Usuarios(models.Model):
-    usuario = models.CharField(max_length=50)
-    contraseña = models.CharField(max_length=50, null=False, blank=False, default="")
-    estado = models.BooleanField(default=True)
-    cliente = models.ForeignKey(Clientes, on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return f'{self.usuario}'
-
-    class Meta:
-        db_table = 'Usuarios'
 
 class Compras(models.Model):
     id_compra = models.CharField(max_length=10, default="")
     fecha = models.DateField()
-    usuario = models.ForeignKey(Usuarios, on_delete=models.CASCADE, default="")
+    usuario = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default="")
     monto = models.FloatField(default=0)
 
     def __str__(self):
@@ -86,9 +78,12 @@ class comprasAdmin(models.Model):
     proveedores = models.ForeignKey(Proveedores, on_delete=models.CASCADE)
     producto = models.ForeignKey(Productos, on_delete=models.CASCADE)
 
+    class Meta:
+        db_table = 'comprasAdmin'
+
 class Ventas(models.Model):
     fecha = models.DateField()
-    usuario = models.ForeignKey(Usuarios, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     monto = models.FloatField(default=0)
 
     def __str__(self):
@@ -100,7 +95,7 @@ class Ventas(models.Model):
 class detallesVentas(models.Model):
     cantidad = models.FloatField()
     producto = models.ForeignKey(Productos, on_delete=models.CASCADE)    
-    venta = models.ForeignKey(Ventas, on_delete=models.CASCADE)    
+    venta = models.ForeignKey(Ventas, on_delete=models.CASCADE)   
  
     def __str__(self):
         return f'{self.cantidad}, {self.producto}, {self.venta}'

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'EPP.apps.EppConfig',
+    'cuentas',
     'django.contrib.humanize',
 ]
 
@@ -128,6 +129,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 import os
+
+
+AUTH_USER_MODEL = 'cuentas.CustomUser'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT= os.path.join(BASE_DIR, 'media')

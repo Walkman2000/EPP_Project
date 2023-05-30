@@ -1,7 +1,7 @@
 
 from django.contrib import admin
 
-from .models import Proveedores, Productos, Clientes, Usuarios, Compras, Ventas, detallesCompras, detallesVentas, MovimientosAlmacen, Carrito, Categorias
+from .models import Proveedores, Productos, Clientes, CustomUser, Compras, Ventas, detallesCompras, detallesVentas, MovimientosAlmacen, Carrito, Categorias
 # Register your models here.
 
 @admin.register(Categorias)
@@ -10,7 +10,6 @@ class CategoriasTabla(admin.ModelAdmin):
 @admin.register(Productos)
 class ProductosTabla(admin.ModelAdmin):
     list_display = ['nombre','precio','categoria','descripcion','cantidad','prov','imagen']
-
 @admin.register(detallesCompras)
 class DetallesComprasTabla(admin.ModelAdmin):
     list_display = ['id', 'cantidad','producto','compra']
@@ -34,9 +33,9 @@ class ClientesTabla(admin.ModelAdmin):
 class ProveedoresTabla(admin.ModelAdmin):
     list_display = ['nombre', 'telefono', 'email']
 
-@admin.register(Usuarios)
+@admin.register(CustomUser)
 class UsuariosTabla(admin.ModelAdmin):
-    list_display = ['usuario', 'contraseña', 'estado', 'cliente']
+    list_display = ['usuario', 'telefono', 'contraseña', 'password', 'last_login']
 
 @admin.register(Carrito)
 class UsuariosTabla(admin.ModelAdmin):
